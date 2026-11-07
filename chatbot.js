@@ -54,8 +54,7 @@ function renderQuickReplies() {
 function addMsg(text, who) {
   const div = document.createElement("div");
   div.className = `msg-row ${who}`;
-  if (who === "bot") div.innerHTML = `<div class="msg-bubble">${text}</div>`;
-  else div.innerHTML = `<div class="msg-bubble">${text}</div>`;
+  div.innerHTML = `<div class="msg-bubble">${text}</div>`;
   msgs.appendChild(div);
   msgs.scrollTop = msgs.scrollHeight;
 }
@@ -77,7 +76,6 @@ function getBotReply(text) {
     const kws = r.keywords.split(",").map(k => k.trim().toLowerCase()).filter(Boolean);
     if (kws.some(k => q.includes(k))) return r.reply;
   }
-  // Defaults अगर DB खाली हो
   if (q.includes("जनसंख्या") || q.includes("population")) return "धात्री गाँव की जनसंख्या 3,169 है (2011 Census)।";
   if (q.includes("सरपंच")) return "धात्री गाँव के सरपंच <b>Rampratap</b> हैं।";
   if (q.includes("संपर्क") || q.includes("contact")) return "ईमेल: info@dhaatri.mywire.org";
@@ -87,6 +85,10 @@ function getBotReply(text) {
 function send() {
   const t = input.value.trim(); if (!t) return;
   addMsg(t, "user"); input.value = "";
+  
+  // Quick replies छिपा दो जब यूजर मैसेज भेज दे
+  if(quickBox) quickBox.style.display = "none";
+
   showTyping();
   setTimeout(() => {
     hideTyping();
@@ -96,4 +98,6 @@ function send() {
 
 sendBtn.onclick = send;
 input.addEventListener("keydown", e => { if (e.key === "Enter") send(); });
+
+// Initial Greeting
 addMsg("नमस्ते! 🙏 मैं <b>धात्री मित्र</b> हूँ — धात्री गाँव का आपका सहायक।", "bot");

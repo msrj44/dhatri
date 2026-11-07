@@ -36,11 +36,21 @@ async function loadPopup() {
   } catch (e) { console.warn("Popup skipped:", e.message); }
 }
 
-// Chatbot Loader
+// Chatbot Loader (FIX: CSS Load Added)
 async function loadChatbot() {
   try {
     const snap = await getDoc(doc(db, "settings", "chatbot"));
     if (!snap.exists() || !snap.data().enabled) return;
+
+    // 1. CSS लोड करो
+    if (!document.querySelector('link[href="chatbot.css"]')) {
+      const link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = "chatbot.css";
+      document.head.appendChild(link);
+    }
+
+    // 2. JS लोड करो
     const s = document.createElement("script");
     s.type = "module";
     s.src = "chatbot.js";
@@ -71,7 +81,6 @@ function setupPWA() {
     e.preventDefault();
     deferredPrompt = e;
     
-    // Add install button to footer
     const footer = document.querySelector(".site-footer");
     if (footer && !document.getElementById("install-app-btn")) {
       const btn = document.createElement("button");
