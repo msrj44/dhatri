@@ -1,0 +1,36 @@
+<!DOCTYPE html><html lang="hi"><head>
+<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Chatbot — Dhatri Admin</title>
+<meta name="robots" content="noindex" />
+<link rel="icon" type="image/png" href="../logo.png" />
+<link rel="stylesheet" href="admin.css" />
+</head><body>
+<header class="admin-header"><h1>🛠️ Dhatri <span>Admin</span></h1><div class="user-info">👤 <strong id="user-email">...</strong></div><button id="logout-btn">Logout</button></header>
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="sidebar"></aside>
+  <main class="admin-main">
+    <h2>🤖 Chatbot Editor</h2>
+    <div class="admin-card">
+      <h3>Status</h3>
+      <label><input type="checkbox" id="chatbot-enabled" /> चैटबॉट चालू करें</label>
+      <button id="toggle-btn" class="btn" style="margin-left:1rem;">💾 अपडेट</button>
+      <span id="msg" style="margin-left:1rem;font-weight:600;"></span>
+    </div>
+    <div class="admin-card">
+      <h3>नया Rule जोड़ें</h3>
+      <div class="form-row"><label>Keywords (comma separated)</label><input id="rule-keywords" placeholder="जनसंख्या, population, people" /></div>
+      <div class="form-row"><label>Reply</label><textarea id="rule-reply" rows="2"></textarea></div>
+      <button id="add-rule-btn" class="btn">➕ जोड़ें</button>
+    </div>
+    <div class="admin-card">
+      <h3>सभी Rules</h3>
+      <table class="admin-table">
+        <thead><tr><th>Keywords</th><th>Reply</th><th>Action</th></tr></thead>
+        <tbody id="rules-body"></tbody>
+      </table>
+    </div>
+  </main>
+</div>
+<script type="module" src="js/admin-core.js"></script>
+<script type="module" src="js/chatbot.js"></script>
+</body></html>

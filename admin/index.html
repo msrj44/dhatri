@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard — Dhatri Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <h1>🛠️ Dhatri <span>Admin Panel</span></h1>
+  <div class="user-info">👤 <strong id="user-email">...</strong></div>
+  <button id="logout-btn">Logout</button>
+</header>
+
+<div class="admin-layout">
+  <aside class="admin-sidebar" id="sidebar"></aside>
+  <main class="admin-main">
+    <h2>📊 Overview</h2>
+    <div class="admin-card">
+      <h3>स्वागत है!</h3>
+      <p>धात्री गाँव वेबसाइट के Admin Panel में आपका स्वागत है। बाईं तरफ़ से किसी भी section को चुनें।</p>
+    </div>
+    <div class="admin-card">
+      <h3>👥 Admins</h3>
+      <ul style="list-style:none;padding:0;line-height:2;">
+        <li>👑 <strong>dhatri.raj.in@gmail.com</strong> — Main Admin</li>
+        <li>👤 <strong>thesinwarshabrj44@gmail.com</strong> — Mukesh Sinwar</li>
+        <li>⚡ <strong>rdx.hq.in@gmail.com</strong> — RDX</li>
+      </ul>
+    </div>
+    <div class="admin-card">
+      <h3>💡 Quick Tips</h3>
+      <ul style="line-height:1.9;padding-left:1.2rem;">
+        <li><strong>Themes</strong> — वेबसाइट के रंग बदलें</li>
+        <li><strong>Home</strong> — होम पेज के sections manage करें</li>
+        <li><strong>Gallery</strong> — फोटो अपलोड करें (Cloudinary)</li>
+        <li><strong>Chatbot</strong> — चैटबॉट on/off + Q&A</li>
+        <li><strong>Popups</strong> — वेबसाइट खुलते ही दिखने वाला पॉपअप</li>
+      </ul>
+    </div>
+  </main>
+</div>
+
+<script type="module" src="js/admin-core.js"></script>
+<script type="module">
+import "./js/admin-core.js";
+</script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>धात्री गाँव संपर्क | Contact Dhatri Village</title>
+  <meta name="description" content="धात्री गाँव से संपर्क करें — पंचायत, सरपंच, ईमेल, फोन।" />
+  <meta name="keywords" content="Dhatri Contact, धात्री संपर्क, Dhatri Village Contact" />
+  <meta name="robots" content="index, follow" />
+  <link rel="canonical" href="https://dhatri.mywire.org/contact.html" />
+  <link rel="icon" type="image/png" href="logo.png" />
+  <link rel="apple-touch-icon" href="logo.png" />
+  <link rel="stylesheet" href="styles.css" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="संपर्क करें | Contact Dhatri Village" />
+  <meta property="og:description" content="Dhatri village contact information." />
+  <meta property="og:url" content="https://dhatri.mywire.org/contact.html" />
+  <meta property="og:image" content="https://dhatri.mywire.org/logo.png" />
+  <meta property="og:site_name" content="Dhatri Village" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Contact Dhatri Village" />
+  <meta name="twitter:image" content="https://dhatri.mywire.org/logo.png" />
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ContactPage",
+    "name":"Contact Dhatri Village",
+    "url":"https://dhatri.mywire.org/contact.html",
+    "mainEntity":{"@type":"Organization","name":"Dhatri Village","email":"info@dhaatri.mywire.org","address":{"@type":"PostalAddress","addressLocality":"Dhatri","addressRegion":"Rajasthan","postalCode":"331505","addressCountry":"IN"}}
+  }
+  </script>
+</head>
+<body>
+<header class="site-header">
+  <div class="logo-area"><img src="logo.png" alt="Logo" onerror="this.style.display='none'" /><h1>धात्री <span>| Dhatri</span></h1></div>
+  <nav class="site-nav">
+    <a href="index.html">🏠 होम</a><a href="about.html">📖 गाँव</a>
+    <a href="panchayat.html">🏛️ पंचायत</a><a href="gallery.html">📸 गैलरी</a><a href="contact.html" class="active">📞 संपर्क</a>
+  </nav>
+</header>
+
+<div class="container">
+  <h2 class="section-title">📞 संपर्क करें</h2>
+  <div class="info-grid">
+    <div class="info-item"><div class="label">ईमेल</div><div class="value">info@dhaatri.mywire.org</div></div>
+    <div class="info-item"><div class="label">पता</div><div class="value">Dhatri, Sujangarh, Churu, Rajasthan — 331505</div></div>
+    <div class="info-item"><div class="label">STD कोड</div><div class="value">01569</div></div>
+    <div class="info-item"><div class="label">सरपंच</div><div class="value">Rampratap</div></div>
+  </div>
+
+  <div class="contact-box">
+    <h3 style="margin-bottom:1rem;color:var(--primary);">संदेश भेजें</h3>
+    <form id="contact-form">
+      <div class="form-row"><label>आपका नाम</label><input type="text" name="name" required /></div>
+      <div class="form-row"><label>ईमेल</label><input type="email" name="email" required /></div>
+      <div class="form-row"><label>विषय</label><input type="text" name="subject" required /></div>
+      <div class="form-row"><label>संदेश</label><textarea name="message" rows="5" required></textarea></div>
+      <button type="submit" class="btn">भेजें</button>
+    </form>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <p>© 2026 धात्री गाँव | Dhatri Village. All rights reserved.</p>
+  <p>📍 Sujangarh, Churu, Rajasthan — 331505</p>
+  <div class="footer-links">
+    <a href="privacy.html">Privacy</a> | <a href="terms.html">Terms</a> |
+    <a href="disclaimer.html">Disclaimer</a> | <a href="admin/login.html">Admin</a>
+  </div>
+</footer>
+
+<script type="module">
+import { db } from "./firebase-config.js";
+import { collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+document.getElementById("contact-form").addEventListener("submit", async e => {
+  e.preventDefault();
+  const fd = new FormData(e.target);
+  try {
+    await addDoc(collection(db, "contact_messages"), {
+      name: fd.get("name"), email: fd.get("email"),
+      subject: fd.get("subject"), message: fd.get("message"),
+      createdAt: serverTimestamp()
+    });
+    alert("✅ संदेश भेज दिया गया! धन्यवाद।");
+    e.target.reset();
+  } catch (err) { alert("❌ " + err.message); }
+});
+</script>
+<script type="module" src="public-loader.js"></script>
+</body>
+</html>
