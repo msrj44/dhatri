@@ -5,47 +5,55 @@
   <title>Dashboard — Dhatri Admin</title>
   <meta name="robots" content="noindex" />
   <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="apple-touch-icon" href="../logo.png" />
   <link rel="stylesheet" href="admin.css" />
 </head>
 <body>
 <header class="admin-header">
-  <h1>🛠️ Dhatri <span>Admin Panel</span></h1>
+  <h1>🛠️ Dhatri <span>Admin</span></h1>
   <div class="user-info">👤 <strong id="user-email">...</strong></div>
   <button id="logout-btn">Logout</button>
 </header>
+<div id="sidebar"></div>
 
-<div class="admin-layout">
-  <aside class="admin-sidebar" id="sidebar"></aside>
-  <main class="admin-main">
-    <h2>📊 Overview</h2>
-    <div class="admin-card">
-      <h3>स्वागत है!</h3>
-      <p>धात्री गाँव वेबसाइट के Admin Panel में आपका स्वागत है। बाईं तरफ़ से किसी भी section को चुनें।</p>
+<main class="admin-main">
+  <h2>📊 Dashboard Overview</h2>
+  <p class="admin-subtitle">Welcome to Dhatri Village Portal Admin Panel.</p>
+
+  <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h3>🎨 Themes</h3>
+      <p style="color:#64748b; font-size:0.9rem;">Site ka theme aur colors change karo</p>
     </div>
-    <div class="admin-card">
-      <h3>👥 Admins</h3>
-      <ul style="list-style:none;padding:0;line-height:2;">
-        <li>👑 <strong>dhatri.raj.in@gmail.com</strong> — Main Admin</li>
-        <li>👤 <strong>thesinwarshabrj44@gmail.com</strong> — Mukesh Sinwar</li>
-        <li>⚡ <strong>rdx.hq.in@gmail.com</strong> — RDX</li>
-      </ul>
+    <a href="themes.html" class="btn">Open →</a>
+  </div>
+
+  <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h3>📢 Popups</h3>
+      <p style="color:#64748b; font-size:0.9rem;">Site pe announcement popup banao</p>
     </div>
-    <div class="admin-card">
-      <h3>💡 Quick Tips</h3>
-      <ul style="line-height:1.9;padding-left:1.2rem;">
-        <li><strong>Themes</strong> — वेबसाइट के रंग बदलें</li>
-        <li><strong>Home</strong> — होम पेज के sections manage करें</li>
-        <li><strong>Gallery</strong> — फोटो अपलोड करें (Cloudinary)</li>
-        <li><strong>Chatbot</strong> — चैटबॉट on/off + Q&A</li>
-        <li><strong>Popups</strong> — वेबसाइट खुलते ही दिखने वाला पॉपअप</li>
-      </ul>
+    <a href="popups.html" class="btn">Open →</a>
+  </div>
+
+  <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h3>📸 Gallery</h3>
+      <p style="color:#64748b; font-size:0.9rem;">Photos add/remove karo</p>
     </div>
-  </main>
-</div>
+    <a href="gallery.html" class="btn">Open →</a>
+  </div>
+
+  <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h3>📄 Legal Pages</h3>
+      <p style="color:#64748b; font-size:0.9rem;">Privacy, Terms, Disclaimer edit karo</p>
+    </div>
+    <a href="legal.html" class="btn">Open →</a>
+  </div>
+</main>
 
 <script type="module" src="js/admin-core.js"></script>
-<script type="module">
-import "./js/admin-core.js";
-</script>
 </body>
 </html>

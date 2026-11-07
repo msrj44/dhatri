@@ -1,28 +1,51 @@
-<!DOCTYPE html><html lang="hi"><head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Gallery Editor — Dhatri Admin</title>
-<meta name="robots" content="noindex" />
-<link rel="icon" type="image/png" href="../logo.png" />
-<link rel="stylesheet" href="admin.css" />
-</head><body>
-<header class="admin-header"><h1>🛠️ Dhatri <span>Admin</span></h1><div class="user-info">👤 <strong id="user-email">...</strong></div><button id="logout-btn">Logout</button></header>
-<div class="admin-layout">
-  <aside class="admin-sidebar" id="sidebar"></aside>
-  <main class="admin-main">
-    <h2>📸 Gallery Editor</h2>
-    <div class="admin-card">
-      <h3>फोटो अपलोड करें</h3>
-      <div class="form-row"><label>फोटो चुनें</label><input type="file" id="gallery-file" accept="image/*" /></div>
-      <div class="form-row"><label>Caption (optional)</label><input id="gallery-caption" placeholder="जैसे: तेजाजी मंदिर" /></div>
-      <button id="upload-btn" class="btn">☁️ अपलोड</button>
-      <span id="msg" style="margin-left:1rem;font-weight:600;"></span>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery Manager — Dhatri Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="apple-touch-icon" href="../logo.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <h1>🛠️ Dhatri <span>Admin</span></h1>
+  <div class="user-info">👤 <strong id="user-email">...</strong></div>
+  <button id="logout-btn">Logout</button>
+</header>
+<div id="sidebar"></div>
+
+<main class="admin-main">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h2>📸 Gallery Manager</h2>
+      <p class="admin-subtitle">Groups बनाओ और फोटो अपलोड करो (Cloudinary)</p>
     </div>
-    <div class="admin-card">
-      <h3>सभी फोटो</h3>
-      <div id="admin-gallery" style="display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:1rem;"></div>
+    <button id="new-group-btn" class="btn">➕ New Group</button>
+  </div>
+
+  <div id="groups-container" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:1.5rem; margin-top:1.5rem;">
+    <!-- Groups यहाँ आएंगे -->
+  </div>
+
+  <!-- Popup Modal for Group -->
+  <div class="modal-overlay" id="group-modal">
+    <div class="modal-box" style="max-width:500px;">
+      <button class="modal-close" id="g-modal-close">&times;</button>
+      <h3 id="g-modal-title">New Gallery Group</h3>
+      <div class="form-row"><label>Group Name</label><input type="text" id="g-name" placeholder="जैसे: तेजाजी मंदिर" /></div>
+      <div class="form-row"><label>Description</label><textarea id="g-desc" rows="2"></textarea></div>
+      <div style="display:flex; justify-content:flex-end; gap:1rem;">
+        <button class="btn btn-primary" id="g-modal-cancel" style="background:#e2e8f0; color:#475569;">Cancel</button>
+        <button class="btn" id="g-modal-save">💾 Save Group</button>
+      </div>
     </div>
-  </main>
-</div>
+  </div>
+</main>
+
 <script type="module" src="js/admin-core.js"></script>
 <script type="module" src="js/gallery.js"></script>
-</body></html>
+</body>
+</html>

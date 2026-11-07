@@ -1,24 +1,41 @@
-<!DOCTYPE html><html lang="hi"><head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Popups — Dhatri Admin</title>
-<meta name="robots" content="noindex" />
-<link rel="icon" type="image/png" href="../logo.png" />
-<link rel="stylesheet" href="admin.css" />
-</head><body>
-<header class="admin-header"><h1>🛠️ Dhatri <span>Admin</span></h1><div class="user-info">👤 <strong id="user-email">...</strong></div><button id="logout-btn">Logout</button></header>
-<div class="admin-layout">
-  <aside class="admin-sidebar" id="sidebar"></aside>
-  <main class="admin-main">
-    <h2>📢 Popup Editor</h2>
-    <div class="admin-card">
-      <div class="form-row"><label><input type="checkbox" id="popup-active" /> Popup सक्रिय करें</label></div>
-      <div class="form-row"><label>Title</label><input id="popup-title" /></div>
-      <div class="form-row"><label>Message</label><textarea id="popup-message" rows="3"></textarea></div>
-      <div class="form-row"><label>Image URL (optional)</label><input id="popup-image" /></div>
-      <button id="save-btn" class="btn">💾 सेव</button><span id="msg" style="margin-left:1rem;font-weight:600;"></span>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Popups — Dhatri Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="apple-touch-icon" href="../logo.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <h1>🛠️ Dhatri <span>Admin</span></h1>
+  <div class="user-info">👤 <strong id="user-email">...</strong></div>
+  <button id="logout-btn">Logout</button>
+</header>
+<div id="sidebar"></div>
+
+<main class="admin-main">
+  <h2>📢 Popup Manager</h2>
+  <p class="admin-subtitle">Site pe entry popup — image, HTML, ya text.</p>
+
+  <div class="admin-card">
+    <div class="form-row"><label>Title</label><input type="text" id="p-title" placeholder="सूचना" /></div>
+    <div class="form-row"><label>Category Badge</label><input type="text" id="p-badge" placeholder="Notice" /></div>
+    <div class="form-row"><label>Body text</label><textarea id="p-body" rows="3"></textarea></div>
+    <div class="form-row"><label>Image URL (optional)</label><input type="text" id="p-image" /></div>
+    <div class="form-row"><label><input type="checkbox" id="p-active" /> Enable this popup</label></div>
+    <div style="display:flex; gap:1rem;">
+      <button id="save-btn" class="btn">💾 Save</button>
+      <button id="clear-btn" class="btn btn-primary" style="background:#e2e8f0; color:#475569;">Clear</button>
     </div>
-  </main>
-</div>
+    <span id="msg" style="margin-left:1rem; font-weight:600;"></span>
+  </div>
+</main>
+
 <script type="module" src="js/admin-core.js"></script>
 <script type="module" src="js/popups.js"></script>
-</body></html>
+</body>
+</html>

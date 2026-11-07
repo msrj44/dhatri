@@ -1,22 +1,33 @@
-import { saveDoc, getDocData, showMsg } from "./admin-core.js";
+import { getDocData, saveDoc, showMsg } from "./admin-core.js";
+
 async function load() {
   const d = await getDocData("settings", "popups");
   if (d) {
-    document.getElementById("popup-active").checked = !!d.active;
-    document.getElementById("popup-title").value = d.title || "";
-    document.getElementById("popup-message").value = d.message || "";
-    document.getElementById("popup-image").value = d.image || "";
+    document.getElementById("p-title").value = d.title || "";
+    document.getElementById("p-badge").value = d.badge || "";
+    document.getElementById("p-body").value = d.body || "";
+    document.getElementById("p-image").value = d.image || "";
+    document.getElementById("p-active").checked = !!d.active;
   }
 }
-document.addEventListener("DOMContentLoaded", () => {
-  load();
-  document.getElementById("save-btn").onclick = async () => {
-    await saveDoc("settings", "popups", {
-      active: document.getElementById("popup-active").checked,
-      title: document.getElementById("popup-title").value,
-      message: document.getElementById("popup-message").value,
-      image: document.getElementById("popup-image").value
-    });
-    showMsg(document.getElementById("msg"), "✅ Popup सेव!");
-  };
-});
+
+document.getElementById("save-btn").onclick = async () => {
+  await saveDoc("settings", "popups", {
+    title: document.getElementById("p-title").value,
+    badge: document.getElementById("p-badge").value,
+    body: document.getElementById("p-body").value,
+    image: document.getElementById("p-image").value,
+    active: document.getElementById("p-active").checked
+  });
+  showMsg(document.getElementById("msg"), "✅ Popup सेव!");
+};
+
+document.getElementById("clear-btn").onclick = () => {
+  document.getElementById("p-title").value = "";
+  document.getElementById("p-badge").value = "";
+  document.getElementById("p-body").value = "";
+  document.getElementById("p-image").value = "";
+  document.getElementById("p-active").checked = false;
+};
+
+load();

@@ -1,23 +1,82 @@
-<!DOCTYPE html><html lang="hi"><head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About Editor — Dhatri Admin</title>
-<meta name="robots" content="noindex" />
-<link rel="icon" type="image/png" href="../logo.png" />
-<link rel="stylesheet" href="admin.css" />
-</head><body>
-<header class="admin-header"><h1>🛠️ Dhatri <span>Admin</span></h1><div class="user-info">👤 <strong id="user-email">...</strong></div><button id="logout-btn">Logout</button></header>
-<div class="admin-layout">
-  <aside class="admin-sidebar" id="sidebar"></aside>
-  <main class="admin-main">
-    <h2>📖 About Editor</h2>
-    <div class="admin-card">
-      <h3>गाँव का इतिहास</h3>
-      <div class="form-row"><label>History</label><textarea id="about-history" rows="6" placeholder="धात्री गाँव का इतिहास..."></textarea></div>
-      <div class="form-row"><label>Extra Info</label><textarea id="about-extra" rows="4"></textarea></div>
-      <button id="save-btn" class="btn">💾 सेव</button><span id="msg" style="margin-left:1rem;font-weight:600;"></span>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Editor — Dhatri Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="apple-touch-icon" href="../logo.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <h1>🛠️ Dhatri <span>Admin</span></h1>
+  <div class="user-info">👤 <strong id="user-email">...</strong></div>
+  <button id="logout-btn">Logout</button>
+</header>
+<div id="sidebar"></div>
+
+<main class="admin-main">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h2>📖 About Page Editor</h2>
+      <p class="admin-subtitle">Sections जोड़ो, edit करो, delete करो — जैसे WordPress में।</p>
     </div>
-  </main>
+    <a href="../about.html" target="_blank" class="btn btn-primary" style="padding:0.5rem 1rem; font-size:0.85rem;">👁️ Preview</a>
+  </div>
+
+  <div id="sections-list" style="margin-bottom: 1.5rem;"></div>
+
+  <button id="add-section-btn" class="btn" style="width:100%; justify-content:center; padding:1rem; background:var(--primary); margin-bottom: 1.5rem;">➕ नया Section जोड़ें</button>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; background:#fff; padding:1rem 1.5rem; border-radius:12px; box-shadow:var(--shadow);">
+    <span style="color:#64748b; font-size:0.9rem;" id="save-status">सब changes save हो चुके हैं</span>
+    <button id="save-all-btn" class="btn" style="padding:0.8rem 2rem;">💾 Save All Changes</button>
+  </div>
+</main>
+
+<!-- Modal for Add/Edit Section -->
+<div class="modal-overlay" id="section-modal">
+  <div class="modal-box">
+    <button class="modal-close" id="modal-close">&times;</button>
+    <h3 id="modal-title">Add New Section</h3>
+    <p>Section का type और title चुनो</p>
+
+    <div class="form-row">
+      <label>Section Title</label>
+      <input type="text" id="sec-title" placeholder="जैसे: गाँव की जानकारी, जनसंख्या" />
+    </div>
+
+    <div class="form-row" id="type-selector">
+      <label>Section Type</label>
+      <div class="type-grid">
+        <div class="type-card" data-type="table"><span class="icon">📊</span><span class="label">Table</span><div class="desc">Key-Value pairs</div></div>
+        <div class="type-card" data-type="list"><span class="icon">📋</span><span class="label">List</span><div class="desc">Bullet points</div></div>
+        <div class="type-card" data-type="cards"><span class="icon">🃏</span><span class="label">Cards</span><div class="desc">Icon + Title + Subtitle</div></div>
+        <div class="type-card" data-type="html"><span class="icon">🧩</span><span class="label">Custom HTML</span><div class="desc">Raw HTML</div></div>
+      </div>
+    </div>
+
+    <div id="builder-area" style="display:none; margin-bottom: 1.5rem;">
+      <label style="font-weight:600; color:#475569; font-size:0.9rem; display:block; margin-bottom:0.5rem;">Data</label>
+      <div id="builder-rows"></div>
+      <button class="btn btn-primary btn-sm" id="add-row-btn" style="margin-top:0.5rem;">➕ Add Row</button>
+    </div>
+
+    <div id="html-area" style="display:none; margin-bottom:1.5rem;">
+      <label style="font-weight:600; color:#475569; font-size:0.9rem; display:block; margin-bottom:0.5rem;">HTML Code</label>
+      <textarea id="sec-html" rows="8" style="width:100%; padding:0.75rem; border:1px solid var(--border); border-radius:8px; font-family:monospace;"></textarea>
+    </div>
+
+    <div style="display:flex; gap:1rem; justify-content:flex-end; margin-top:2rem;">
+      <button class="btn btn-primary" id="modal-cancel" style="background:#e2e8f0; color:#475569;">Cancel</button>
+      <button class="btn" id="modal-save">💾 Save Section</button>
+    </div>
+  </div>
 </div>
+
 <script type="module" src="js/admin-core.js"></script>
 <script type="module" src="js/about.js"></script>
-</body></html>
+</body>
+</html>

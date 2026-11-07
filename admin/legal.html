@@ -1,31 +1,52 @@
-<!DOCTYPE html><html lang="hi"><head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Legal — Dhatri Admin</title>
-<meta name="robots" content="noindex" />
-<link rel="icon" type="image/png" href="../logo.png" />
-<link rel="stylesheet" href="admin.css" />
-</head><body>
-<header class="admin-header"><h1>🛠️ Dhatri <span>Admin</span></h1><div class="user-info">👤 <strong id="user-email">...</strong></div><button id="logout-btn">Logout</button></header>
-<div class="admin-layout">
-  <aside class="admin-sidebar" id="sidebar"></aside>
-  <main class="admin-main">
-    <h2>📄 Legal Pages Editor</h2>
-    <div class="admin-card">
-      <h3>🔒 Privacy Policy</h3>
-      <textarea id="privacy" rows="6" style="width:100%;padding:0.6rem;border:1px solid #dee2e6;border-radius:6px;"></textarea>
-    </div>
-    <div class="admin-card">
-      <h3>📜 Terms & Conditions</h3>
-      <textarea id="terms" rows="6" style="width:100%;padding:0.6rem;border:1px solid #dee2e6;border-radius:6px;"></textarea>
-    </div>
-    <div class="admin-card">
-      <h3>⚠️ Disclaimer</h3>
-      <textarea id="disclaimer" rows="6" style="width:100%;padding:0.6rem;border:1px solid #dee2e6;border-radius:6px;"></textarea>
-    </div>
-    <button id="save-btn" class="btn">💾 सभी सेव करें</button>
-    <span id="msg" style="margin-left:1rem;font-weight:600;"></span>
-  </main>
-</div>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Legal Pages — Dhatri Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="apple-touch-icon" href="../logo.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <h1>🛠️ Dhatri <span>Admin</span></h1>
+  <div class="user-info">👤 <strong id="user-email">...</strong></div>
+  <button id="logout-btn">Logout</button>
+</header>
+<div id="sidebar"></div>
+
+<main class="admin-main">
+  <h2>📄 Legal Pages Editor</h2>
+  <p class="admin-subtitle">Privacy, Terms, Disclaimer content edit karo. HTML allowed.</p>
+
+  <div style="display:flex; gap:1rem; margin-bottom:1.5rem;">
+    <button class="btn btn-primary tab-btn active" data-tab="privacy">🔒 Privacy Policy</button>
+    <button class="btn btn-primary tab-btn" data-tab="terms" style="background:#e2e8f0; color:#475569;">📜 Terms</button>
+    <button class="btn btn-primary tab-btn" data-tab="disclaimer" style="background:#e2e8f0; color:#475569;">⚠️ Disclaimer</button>
+  </div>
+
+  <div id="tab-privacy" class="admin-card">
+    <h3>🔒 Privacy Policy Content</h3>
+    <textarea id="privacy" rows="15" style="width:100%; padding:1rem; border:1px solid var(--border); border-radius:8px; font-family:inherit;"></textarea>
+  </div>
+  <div id="tab-terms" class="admin-card" style="display:none;">
+    <h3>📜 Terms & Conditions Content</h3>
+    <textarea id="terms" rows="15" style="width:100%; padding:1rem; border:1px solid var(--border); border-radius:8px; font-family:inherit;"></textarea>
+  </div>
+  <div id="tab-disclaimer" class="admin-card" style="display:none;">
+    <h3>⚠️ Disclaimer Content</h3>
+    <textarea id="disclaimer" rows="15" style="width:100%; padding:1rem; border:1px solid var(--border); border-radius:8px; font-family:inherit;"></textarea>
+  </div>
+
+  <div style="display:flex; align-items:center; gap:1rem; margin-top:1rem;">
+    <button id="save-btn" class="btn">💾 Save All</button>
+    <span id="msg" style="font-weight:600;"></span>
+  </div>
+</main>
+
 <script type="module" src="js/admin-core.js"></script>
 <script type="module" src="js/legal.js"></script>
-</body></html>
+</body>
+</html>

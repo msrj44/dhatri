@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gallery Images — Dhatri Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="apple-touch-icon" href="../logo.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <h1>🛠️ Dhatri <span>Admin</span></h1>
+  <div class="user-info">👤 <strong id="user-email">...</strong></div>
+  <button id="logout-btn">Logout</button>
+</header>
+<div id="sidebar"></div>
+
+<main class="admin-main">
+  <div style="margin-bottom:1.5rem;">
+    <a href="gallery.html" style="color:var(--accent); text-decoration:none; font-weight:600;">← Back to all groups</a>
+  </div>
+
+  <div class="admin-card" style="display:flex; justify-content:space-between; align-items:center; border-left-color:var(--accent);">
+    <div>
+      <h2 id="group-title" style="font-size:1.4rem;">Group Name</h2>
+      <p id="group-desc" style="color:#64748b; font-size:0.9rem;">Description</p>
+    </div>
+    <button id="upload-images-btn" class="btn">➕ Add Images</button>
+  </div>
+
+  <!-- Hidden file input -->
+  <input type="file" id="image-input" accept="image/*" multiple style="display:none;" />
+
+  <div id="images-grid" style="display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:1.5rem; margin-top:1.5rem;"></div>
+</main>
+
+<script type="module" src="js/admin-core.js"></script>
+<script type="module" src="js/gallery-images.js"></script>
+</body>
+</html>

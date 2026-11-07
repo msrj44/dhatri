@@ -1,23 +1,43 @@
-<!DOCTYPE html><html lang="hi"><head>
-<meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Panchayat Editor — Dhatri Admin</title>
-<meta name="robots" content="noindex" />
-<link rel="icon" type="image/png" href="../logo.png" />
-<link rel="stylesheet" href="admin.css" />
-</head><body>
-<header class="admin-header"><h1>🛠️ Dhatri <span>Admin</span></h1><div class="user-info">👤 <strong id="user-email">...</strong></div><button id="logout-btn">Logout</button></header>
-<div class="admin-layout">
-  <aside class="admin-sidebar" id="sidebar"></aside>
-  <main class="admin-main">
-    <h2>🏛️ Panchayat Editor</h2>
-    <div class="admin-card">
-      <div class="form-row"><label>सरपंच</label><input id="sarpanch" /></div>
-      <div class="form-row"><label>VDO</label><input id="vdo" /></div>
-      <div class="form-row"><label>सचिव</label><input id="secretary" /></div>
-      <button id="save-btn" class="btn">💾 सेव</button><span id="msg" style="margin-left:1rem;font-weight:600;"></span>
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Panchayat Editor — Dhatri Admin</title>
+  <meta name="robots" content="noindex" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="icon" type="image/png" href="../logo.png" />
+  <link rel="apple-touch-icon" href="../logo.png" />
+  <link rel="stylesheet" href="admin.css" />
+</head>
+<body>
+<header class="admin-header">
+  <h1>🛠️ Dhatri <span>Admin</span></h1>
+  <div class="user-info">👤 <strong id="user-email">...</strong></div>
+  <button id="logout-btn">Logout</button>
+</header>
+<div id="sidebar"></div>
+
+<main class="admin-main">
+  <div style="display:flex; justify-content:space-between; align-items:center;">
+    <div>
+      <h2>🏛️ Panchayat Editor</h2>
+      <p class="admin-subtitle">पंचायत पदाधिकारी और जानकारी manage करें।</p>
     </div>
-  </main>
-</div>
+  </div>
+
+  <div class="admin-card">
+    <h3>पदाधिकारी (Officials)</h3>
+    <div id="officials-list"></div>
+    <button id="add-official-btn" class="btn btn-primary btn-sm" style="margin-top:0.5rem;">➕ Add Official</button>
+  </div>
+
+  <div style="display:flex; justify-content:space-between; align-items:center; background:#fff; padding:1rem 1.5rem; border-radius:12px; box-shadow:var(--shadow); margin-top:2rem;">
+    <span style="color:#64748b; font-size:0.9rem;" id="save-status">सब changes save हो चुके हैं</span>
+    <button id="save-btn" class="btn" style="padding:0.8rem 2rem;">💾 Save Changes</button>
+  </div>
+</main>
+
 <script type="module" src="js/admin-core.js"></script>
 <script type="module" src="js/panchayat.js"></script>
-</body></html>
+</body>
+</html>

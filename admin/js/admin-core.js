@@ -1,8 +1,8 @@
 import { auth, ADMIN_EMAILS } from "../../firebase-config.js";
 import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
-// Sidebar links (हर admin page पर inject होता है)
-const SIDEBAR_LINKS = [
+// 🚨 यहाँ 'Discussion' जोड़ा गया है
+const TABS = [
   { href: "index.html", icon: "📊", label: "Overview" },
   { href: "home.html", icon: "🏠", label: "Home" },
   { href: "themes.html", icon: "🎨", label: "Themes" },
@@ -12,36 +12,36 @@ const SIDEBAR_LINKS = [
   { href: "panchayat.html", icon: "🏛️", label: "Panchayat" },
   { href: "contact.html", icon: "📞", label: "Contact" },
   { href: "chatbot.html", icon: "🤖", label: "Chatbot" },
-  { href: "legal.html", icon: "📄", label: "Legal" }
+  { href: "legal.html", icon: "📄", label: "Legal" },
+  { href: "discussion.html", icon: "💬", label: "Discussion" }
 ];
 
-function renderSidebar() {
-  const sb = document.getElementById("sidebar");
-  if (!sb) return;
+function renderTabs() {
+  const container = document.getElementById("sidebar");
+  if (!container) return;
   const current = location.pathname.split("/").pop() || "index.html";
-  sb.innerHTML = SIDEBAR_LINKS.map(l =>
-    `<a href="${l.href}" class="${l.href === current ? "active" : ""}">${l.icon} ${l.label}</a>`
+  container.className = "admin-tabs-container";
+  
+  // सारे Tabs render करो
+  container.innerHTML = TABS.map(t => 
+    `<a href="${t.href}" class="admin-tab-link ${t.href === current ? "active" : ""}">${t.icon} ${t.label}</a>`
   ).join("");
 }
 
-// Auth guard
 onAuthStateChanged(auth, user => {
   if (!user || !ADMIN_EMAILS.includes(user.email)) {
-    window.location.href = "login.html";
-    return;
+    window.location.href = "login.html"; return;
   }
   const emailEl = document.getElementById("user-email");
   if (emailEl) emailEl.textContent = user.email;
-  renderSidebar();
+  renderTabs();
 });
 
-// Logout
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("logout-btn");
   if (btn) btn.onclick = () => signOut(auth).then(() => window.location.href = "login.html");
 });
 
-// Common helpers
 export async function saveDoc(collectionName, docId, data) {
   const { db } = await import("../../firebase-config.js");
   const { doc, setDoc, serverTimestamp } = await import("https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js");
