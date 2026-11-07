@@ -3,23 +3,23 @@ import { onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/
 
 // 🚨 यहाँ 'Discussion' जोड़ा गया है
 const TABS = [
-  { href: "index.html", icon: "📊", label: "Overview" },
-  { href: "home.html", icon: "🏠", label: "Home" },
-  { href: "themes.html", icon: "🎨", label: "Themes" },
-  { href: "popups.html", icon: "📢", label: "Popups" },
-  { href: "gallery.html", icon: "📸", label: "Gallery" },
-  { href: "about.html", icon: "📖", label: "About" },
-  { href: "panchayat.html", icon: "🏛️", label: "Panchayat" },
-  { href: "contact.html", icon: "📞", label: "Contact" },
-  { href: "chatbot.html", icon: "🤖", label: "Chatbot" },
-  { href: "legal.html", icon: "📄", label: "Legal" },
-  { href: "discussion.html", icon: "💬", label: "Discussion" }
+  { href: "/admin/index", icon: "📊", label: "Overview" },
+  { href: "/admin/home", icon: "🏠", label: "Home" },
+  { href: "/admin/themes", icon: "🎨", label: "Themes" },
+  { href: "/admin/popups", icon: "📢", label: "Popups" },
+  { href: "/admin/gallery", icon: "📸", label: "Gallery" },
+  { href: "/admin/about", icon: "📖", label: "About" },
+  { href: "/admin/panchayat", icon: "🏛️", label: "Panchayat" },
+  { href: "/admin/contact", icon: "📞", label: "Contact" },
+  { href: "/admin/chatbot", icon: "🤖", label: "Chatbot" },
+  { href: "/admin/legal", icon: "📄", label: "Legal" },
+  { href: "/admin/discussion", icon: "💬", label: "Discussion" }
 ];
 
 function renderTabs() {
   const container = document.getElementById("sidebar");
   if (!container) return;
-  const current = location.pathname.split("/").pop() || "index.html";
+  const current = location.pathname.split("/").pop() || "/admin/index";
   container.className = "admin-tabs-container";
   
   // सारे Tabs render करो
@@ -30,7 +30,7 @@ function renderTabs() {
 
 onAuthStateChanged(auth, user => {
   if (!user || !ADMIN_EMAILS.includes(user.email)) {
-    window.location.href = "login.html"; return;
+    window.location.href = "/admin/login"; return;
   }
   const emailEl = document.getElementById("user-email");
   if (emailEl) emailEl.textContent = user.email;
@@ -39,7 +39,7 @@ onAuthStateChanged(auth, user => {
 
 document.addEventListener("DOMContentLoaded", () => {
   const btn = document.getElementById("logout-btn");
-  if (btn) btn.onclick = () => signOut(auth).then(() => window.location.href = "login.html");
+  if (btn) btn.onclick = () => signOut(auth).then(() => window.location.href = "/admin/login");
 });
 
 export async function saveDoc(collectionName, docId, data) {
