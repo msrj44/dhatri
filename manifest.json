@@ -2,7 +2,7 @@
   "name": "धात्री गाँव | Dhatri Village",
   "short_name": "Dhatri",
   "description": "धात्री गाँव (सुजानगढ़, चूरू, राजस्थान) की आधिकारिक वेबसाइट और गाइड।",
-  "start_url": "/index.html",
+  "start_url": "/index",
   "display": "standalone",
   "background_color": "#0a1f44",
   "theme_color": "#0a1f44",
