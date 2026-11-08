@@ -4,7 +4,7 @@
   canvas.id = 'diwali-canvas';
   
   // 🚨 FIX: z-index को -1 कर दिया है ताकि ये बैकग्राउंड में रहे
-  canvas.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1;';
+  canvas.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;';
   document.body.prepend(canvas); 
 
   const ctx = canvas.getContext('2d');
