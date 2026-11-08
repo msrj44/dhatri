@@ -14,6 +14,19 @@ async function loadTheme() {
   } catch (e) { console.warn("Theme load skipped:", e.message); }
 }
 
+// 👇 Custom CSS Loader (नया जोड़ा गया) 👇
+async function loadCustomCSS() {
+  try {
+    const snap = await getDoc(doc(db, "settings", "custom_theme"));
+    if (snap.exists() && snap.data().css) {
+      const style = document.createElement("style");
+      style.id = "dynamic-custom-css";
+      style.textContent = snap.data().css;
+      document.head.appendChild(style);
+    }
+  } catch (e) { console.warn("Custom CSS skipped:", e.message); }
+}
+
 // Popup Loader
 async function loadPopup() {
   try {
@@ -104,6 +117,7 @@ function setupPWA() {
 // Init All
 document.addEventListener("DOMContentLoaded", () => {
   loadTheme();
+  loadCustomCSS(); // 👈 इसे जोड़ना ज़रूरी है
   loadPopup();
   loadChatbot();
   addRdxBadge();

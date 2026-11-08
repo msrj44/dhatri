@@ -1,4 +1,6 @@
 import { getDocData, saveDoc, showMsg } from "./admin-core.js";
+import { db } from "../../firebase-config.js";
+import { doc, getDoc, setDoc, deleteDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 const PRESETS = [
   { name: "Default (Navy + Saffron)", primary: "#0a1f44", accent: "#ff9933", bg: "#f8f9fa", text: "#212529" },
@@ -15,6 +17,9 @@ const cPrimary = document.getElementById("c-primary");
 const cAccent = document.getElementById("c-accent");
 const cBg = document.getElementById("c-bg");
 const cText = document.getElementById("c-text");
+// Custom CSS Inputs
+const cssNameInput = document.getElementById("theme-name-input");
+const cssCodeInput = document.getElementById("theme-css-input");
 
 async function load() {
   presetsGrid.innerHTML = PRESETS.map((p, i) => `
@@ -28,6 +33,7 @@ async function load() {
     card.onclick = () => applyPreset(PRESETS[parseInt(card.dataset.i)]);
   });
 
+  // Colors लोड करो
   const d = await getDocData("settings", "theme");
   if (d) {
     cPrimary.value = d.primary || PRESETS[0].primary;
@@ -38,6 +44,13 @@ async function load() {
   } else {
     applyPreset(PRESETS[0], true);
   }
+
+  // Custom CSS लोड करो
+  const cssSnap = await getDoc(doc(db, "settings", "custom_theme"));
+  if (cssSnap.exists()) {
+    cssNameInput.value = cssSnap.data().name || "";
+    cssCodeInput.value = cssSnap.data().css || "";
+  }
 }
 
 async function applyPreset(p, silent = false) {
@@ -47,16 +60,50 @@ async function applyPreset(p, silent = false) {
   if (!silent) showMsg(document.getElementById("msg"), "✅ Theme apply हो गया!");
 }
 
+// Apply Colors Button
 document.getElementById("apply-custom-btn").onclick = async () => {
   await saveDoc("settings", "theme", {
-    name: "Custom",
+    name: "Custom Colors",
     primary: cPrimary.value, accent: cAccent.value,
     bg: cBg.value, text: cText.value
   });
-  activeThemeName.textContent = "Custom";
-  showMsg(document.getElementById("msg"), "✅ Custom theme apply हो गया!");
+  activeThemeName.textContent = "Custom Colors";
+  showMsg(document.getElementById("msg"), "✅ Custom colors apply हो गए!");
 };
 
+// Reset Colors Button
 document.getElementById("reset-btn").onclick = () => applyPreset(PRESETS[0]);
+
+
+// ==========================================
+// Custom CSS Logic (नया जोड़ा गया)
+// ==========================================
+
+// Apply CSS Button
+document.getElementById("apply-css-btn").onclick = async () => {
+  const name = cssNameInput.value.trim() || "Advanced Custom CSS";
+  const css = cssCodeInput.value.trim();
+  
+  if (!css) return alert("कृपया CSS कोड लिखें!");
+  
+  try {
+    await setDoc(doc(db, "settings", "custom_theme"), {
+      name, css, updatedAt: serverTimestamp()
+    });
+    showMsg(document.getElementById("css-msg"), "✅ Custom CSS Apply हो गया!");
+  } catch (e) {
+    showMsg(document.getElementById("css-msg"), "❌ Error: " + e.message, "error");
+  }
+};
+
+// Reset CSS Button
+document.getElementById("reset-css-btn").onclick = async () => {
+  if (confirm("क्या आप सारी Custom CSS हटाकर डिफ़ॉल्ट डिज़ाइन पर लौटना चाहते हैं?")) {
+    await deleteDoc(doc(db, "settings", "custom_theme"));
+    cssCodeInput.value = "";
+    cssNameInput.value = "";
+    showMsg(document.getElementById("css-msg"), "🔄 Custom CSS हटा दिया गया!");
+  }
+};
 
 load();
