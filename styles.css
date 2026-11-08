@@ -7,8 +7,21 @@
   --border: #dee2e6;
   --shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
+
 * { margin: 0; padding: 0; box-sizing: border-box; }
-body { font-family: 'Segoe UI','Noto Sans Devanagari',system-ui,sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+
+/* 🚨 FIX: बैकग्राउंड html पर डाला है ताकि body ट्रांसपेरेंट रहे और फायरवर्क्स दिखें */
+html {
+  background: var(--bg);
+}
+
+body { 
+  font-family: 'Segoe UI','Noto Sans Devanagari',system-ui,sans-serif; 
+  background: transparent !important; /* 🚨 FIX: Body ट्रांसपेरेंट */
+  color: var(--text); 
+  line-height: 1.6; 
+}
+
 .site-header { background: var(--primary); color: var(--white); padding: 1rem 2rem; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; box-shadow: var(--shadow); position: sticky; top: 0; z-index: 100; }
 .site-header .logo-area { display: flex; align-items: center; gap: 0.75rem; }
 .site-header img { height: 48px; width: 48px; object-fit: contain; border-radius: 50%; background: #fff; padding: 2px; }
