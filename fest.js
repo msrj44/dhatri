@@ -2,7 +2,9 @@
   // Canvas Setup
   const canvas = document.createElement('canvas');
   canvas.id = 'diwali-canvas';
-  canvas.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:0;';
+  
+  // 🚨 FIX: z-index को -1 कर दिया है ताकि ये बैकग्राउंड में रहे
+  canvas.style.cssText = 'position:fixed; top:0; left:0; width:100%; height:100%; pointer-events:none; z-index:-1;';
   document.body.prepend(canvas); 
 
   const ctx = canvas.getContext('2d');
@@ -90,6 +92,8 @@
 
   function animate() {
     requestAnimationFrame(animate);
+    
+    // 🚨 FIX: 'destination-out' से ट्रेल साफ़ होगा, बैकग्राउंड काला नहीं होगा
     ctx.globalCompositeOperation = 'destination-out';
     ctx.fillStyle = 'rgba(0, 0, 0, 0.1)';
     ctx.fillRect(0, 0, width, height);
